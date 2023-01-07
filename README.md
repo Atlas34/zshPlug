@@ -14,7 +14,7 @@ Add the following to your `.zshrc`
 
 ```sh
 # Plugin examples
-use "zap-zsh/fzf"
+use "Atlas34/fzf-plugin"
 use "zsh-users/zsh-autosuggestions"
 use "zsh-users/zsh-syntax-highlighting"
 
