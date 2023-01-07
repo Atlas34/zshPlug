@@ -9,7 +9,7 @@ CYAN="\e[96m"
 GREEN="\e[92m"
 NC="\e[0m"
 
-# fpath=($ZAP_DIR/completion $fpath)
+fpath=($ZSHPLUG_DIR/completion $fpath)
 
 load()
 {
