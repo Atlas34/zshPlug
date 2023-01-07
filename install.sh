@@ -17,10 +17,10 @@ echo -e "${CYAN}* Updating .zshrc${NC}"
 zshrc="${ZDOTDIR:-$HOME}/.zshrc"
 touch "${zshrc}"
 
-if ! grep -q '[[ -f "${HOME}/.local/share/zshPlug/zshPlug.zsh" ]] && source "${HOME}/.local/share/zshPlug/zshPlug.zsh"' "${zshrc}"
+if ! \grep -q '[[ -f "$HOME/.local/share/zshPlug/zshPlug.zsh" ]] && source "$HOME/.local/share/zshPlug/zshPlug.zsh"' "${zshrc}"
 then
-    echo "[[ -f \"${HOME}/.local/share/zshPlug/zshPlug.zsh\" ]] && source \"${HOME}/.local/share/zshPlug/zshPlug.zsh\"" >> ${zshrc}
+    echo '[[ -f "$HOME/.local/share/zshPlug/zshPlug.zsh" ]] && source "$HOME/.local/share/zshPlug/zshPlug.zsh"' >> ${zshrc}
 fi
-echo -e "${CYAN}* Done installing zshPlug${NC}"
+echo -e "${GREEN}* Done installing zshPlug${NC}"
 
 # vim: ft=bash ts=4 sw=4 sts=4 et
