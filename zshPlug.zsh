@@ -94,7 +94,7 @@ install()
 
 pull()
 {
-    echo ie "  $1"
+    echo -e "  $1"
     git pull > /dev/null 2>&1
 
     if [ $? -ne 0 ]
