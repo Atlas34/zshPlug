@@ -39,10 +39,28 @@ use()
     then
         source "${plugin}"
     else
-        local full_plugin_name="$1"
-        local git_ref="$2"
+        local plugin_name=$(echo "${plugin}" | cut -d "/" -f2)
+        local plugin_dir="${ZSHPLUG_PLUGIN_DIR}/${plugin_name}"
+
+        if [ -d "${plugin_dir}" ]
+        then
+            load ${plugin_name}
+        else
+            echo "❌ Failed to load ${plugin}"
+        fi
+    fi
+}
+
+install()
+{
+    local plugins=$(\grep -E '^[^#]*use ".+"' ${ZSHPLUG_ZSHRC} | cut -d\" -f2)
+
+    for full_plugin_name in ${(f)plugins}
+    do
         local plugin_name=$(echo "${full_plugin_name}" | cut -d "/" -f 2)
         local plugin_dir="${ZSHPLUG_PLUGIN_DIR}/${plugin_name}"
+        local git_refs=$(\grep -E "^[^#]*use \"${p}\"" ${ZSHPLUG_ZSHRC} | cut -d\" -f3)
+
         if [ ! -d "${plugin_dir}" ]
         then
             echo " ${plugin_name}"
@@ -50,7 +68,7 @@ use()
 
             if [ $? -ne 0 ]
             then
-              echo "❌ Failed to clone ${plugin_name}" && return 1
+                echo "❌ Failed to clone ${plugin_name}" && return 1
             fi
 
             if [ -n "${git_ref}" ]
@@ -59,19 +77,19 @@ use()
 
                 if [ $? -ne 0 ]
                 then 
-                  echo "❌ Failed to checkout ${git_ref}" && return 1
+                    echo "❌ Failed to checkout ${git_ref}" && return 1
                 fi
             fi
             echo -e "✅ ${plugin_name}"
-        fi
 
-        load ${plugin_name}
+            load ${plugin_name}
 
-        if [[ ${loaded} == false ]]
-        then
-            echo "❌ Failed to load ${full_plugin_name}"
+            if [[ ${loaded} == false ]]
+            then
+                echo "❌ Failed to load ${full_plugin_name}"
+            fi
         fi
-    fi
+    done
 }
 
 pull()
@@ -159,10 +177,11 @@ help()
 zshPlug [options]
 
 OPTIONS:
-    -h, help     help
-    -v, version  version
-    -u, update   update plugin(s)
-    -c, clean    clean plugin(s)
+    help     help
+    version  version
+    install  install plugin(s)
+    update   update plugin(s)
+    clean    clean plugin(s)
 EOF
 }
 
@@ -173,13 +192,10 @@ version()
 
 typeset -A opts
 opts=(
-    -h "help"
     help "help"
-    -u "update"
+    install "install"
     update "update"
-    -c "clean"
     clean "clean"
-    -v "version"
     version "version"
 )
 

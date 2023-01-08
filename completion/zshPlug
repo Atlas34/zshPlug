@@ -1,7 +1,0 @@
-#compdef zshPlug
-
-_arguments -C -s \
-  "(-)"{-h,help}"[Show help information]" \
-  "(-)"{-v,version}"[Show version information]" \
-  "(-)"{-u,update}"[Update plugins]" \
-  "(-)"{-c,clean}"[Remove unused plugins]" \

@@ -1,0 +1,9 @@
+#compdef zshPlug
+
+_values \
+  "commands" \
+  "help[Show help information]" \
+  "version[Show version information]" \
+  "install[install plugins]" \
+  "update[Update plugins]" \
+  "clean[Remove unused plugins]" \

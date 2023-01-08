@@ -1,4 +1,4 @@
-# zshPlug - my ZSH Plugin Manager
+# zshPlug - my ZSH Plugin Manager ![GitHub release](https://img.shields.io/github/release/Atlas34/zshPlug)
 
 ZSH Plugin manager heavily based on [zap](https://github.com/zap-zsh/zap) but tweaked a bit to suit my needs.
 
@@ -26,28 +26,22 @@ use "romkatv/powerlevel10k"
 
 zshPlug provided commands for updating and cleaning up plugins
 
+- To install plugins or zshPlug:
+
+  ```sh
+  zshPlug install
+  ```
+
 - To update plugins or zshPlug:
 
   ```sh
   zshPlug update
   ```
 
-  or
-
-  ```sh
-  zshPlug -u
-  ```
-
 - To remove plugins you are no longer using:
 
   ```sh
   zshPlug clean
-  ```
-
-  or
-
-  ```sh
-  zshPlug -c
   ```
 
 ## Uninstall
